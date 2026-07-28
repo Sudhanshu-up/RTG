@@ -10,13 +10,18 @@ export const registerUser = async(req,res,next)=>{
         .json({errors: errors.array()});
     };
 
-    const {firstname, lastname, email, password} = req.body;
+    const {fullname, lastname, email, password} = req.body;
 
     const hashPassword = await User.hashPassword(password);
 
-    const user = await createUser({firstname,lastname,email,password});
+    const user = await createUser({
+        firstname:fullname.firstname,
+        lastname:fullname.lastname,
+        email,
+        password:hashPassword
+    });
 
-    const token = User.generateAuthToken();
+    const token = user.generateAuthToken();
 
     res
     .status(201)
