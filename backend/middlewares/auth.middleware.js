@@ -2,6 +2,7 @@ import { User } from "../models/user.model.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { Captain } from "../models/captain.model.js";
+import { BlacklistToken } from "../models/blackListToken.model.js";
 
 
 export const authUser = async(req,res,next)=>{
@@ -12,7 +13,7 @@ export const authUser = async(req,res,next)=>{
         .json({message:'Unauthoized access'});
     }
 
-    const isBlacklisted = await User.findOne({token:token});
+    const isBlacklisted = await BlacklistToken.findOne({token:token});
 
     if(isBlacklisted){
         return res.status(401)
@@ -43,7 +44,7 @@ export const authCaptain = async(req, res, next)=>{
         .json({mesage:'Unauthoirzed access'});
     };
 
-    const isBlacklisted = await Captain.findOne({token:token});
+    const isBlacklisted = await BlacklistToken.findOne({token:token});
 
     if(isBlacklisted){
         return res.status(401)
