@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import userRouter from "./routes/user.routes.js";
+import captainRouter from "./routes/captain.routes.js";
 import cookieParser from "cookie-parser";
 
 
@@ -12,6 +13,7 @@ app.use(cookieParser());
 app.use(express.urlencoded({extended:true}));
 
 app.use("/users",userRouter);
+app.use("/captain",captainRouter);
 
 app.get('/',(req, res)=>{
     res.send(`helloe sudhanshu !!`)
