@@ -1,2 +1,33 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Environment variables / secrets
 .env
-node_modules
+.env.*
+!.env.example
+
+# Production builds
+dist/
+build/
+**/dist/
+**/build/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Editor / OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Testing / coverage
+coverage/
+
+# Local temporary files
+.tmp/
+temp/
